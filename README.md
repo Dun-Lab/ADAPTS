@@ -1,3 +1,7 @@
-# Analysis-and-visualization-of-spatial-transcriptomics-data
+# ADvanced machine learning-Assisted Precision Treatment Strategy
 
-Here are some implementations for using stLearn, Scanpy, Squidpy to analyze and visualize spatial transcriptomics data.
+We aim to establish a machine learning-based platform to assist the precision treatment.
+
+The pipeline would integrate many widely used packages to conduct the integrative analysis. The sematic schema is drafted below. 
+
+![Pipeline](./Pipeline.png)
