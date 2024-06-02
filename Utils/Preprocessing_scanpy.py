@@ -110,4 +110,8 @@ def Batch_correct(adata, method='harmony', ):
         sc.pp.neighbors(adata, use_rep='X_pca', n_neighbors=10, n_pcs=50)
 
     return adata
+<<<<<<< HEAD
     
+=======
+    
+>>>>>>> a0c6f58d40bac9e43d0d3f1d7716f12a40bc893c
