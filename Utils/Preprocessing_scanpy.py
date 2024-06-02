@@ -7,6 +7,7 @@ using scanpy.
 import scanpy as sc
 import scanpy.external as sce
 import pandas as pd
+import numpy as np
 
 def load_adata(scrna_path, batch_id):
     adata = sc.read_mtx(scrna_path + '/' + batch_id + '_matrix.mtx').T
@@ -16,7 +17,7 @@ def load_adata(scrna_path, batch_id):
     adata.obs['batch'] = adata.obs['batch'].astype('category')
     return adata
 
-def basic_qc(adata, min_genes=0, min_cells=0, quietly=False):
+def basic_qc(adata, quietly=False):
 
     # Remove duplicated gene_id and cell_id
     adata.var_names_make_unique()
@@ -24,10 +25,6 @@ def basic_qc(adata, min_genes=0, min_cells=0, quietly=False):
 
     # Highly expressed genes
     sc.pl.highest_expr_genes(adata, n_top=20, showfliers=False)
-
-    # Basic filtering
-    sc.pp.filter_cells(adata, min_genes)
-    sc.pp.filter_genes(adata, min_cells)
 
     # Annotate the group of mitochondrial genes as 'mt'
     adata.var['mt'] = adata.var_names.str.startswith('MT-')
@@ -43,12 +40,12 @@ def basic_qc(adata, min_genes=0, min_cells=0, quietly=False):
         multi_panel=True,
         )
 
-    # Basic filtering
-    sc.pp.filter_cells(adata, min_genes)
-    sc.pp.filter_genes(adata, min_cells)
-
     # Filter outlier cells according to the distribution.
-    adata = adata[adata.obs.n_genes_by_counts > 1000, :] # adopt to violin plot
+    x = adata.obs['n_genes_by_counts'].values
+    x_min = np.max([0, np.median(x)-3*np.std(x)])
+    x_max = np.median(x)+3*np.std(x)
+    adata = adata[adata.obs.n_genes_by_counts > x_min, :] # adopt to violin plot
+    adata = adata[adata.obs.n_genes_by_counts > x_max, :] # adopt to violin plot
     adata = adata[adata.obs.pct_counts_mt < 20, :] # adopt to violin plot
     if quietly == False:
         print("After cell filtering:")
