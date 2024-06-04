@@ -44,9 +44,12 @@ def basic_qc(adata, quietly=False):
     x = adata.obs['n_genes_by_counts'].values
     x_min = np.max([0, np.median(x)-3*np.std(x)])
     x_max = np.median(x)+3*np.std(x)
-    adata = adata[adata.obs.n_genes_by_counts > x_min, :] # adopt to violin plot
-    adata = adata[adata.obs.n_genes_by_counts > x_max, :] # adopt to violin plot
-    adata = adata[adata.obs.pct_counts_mt < 20, :] # adopt to violin plot
+    adata = adata[
+        (adata.obs.n_genes_by_counts > x_min) & 
+        (adata.obs.n_genes_by_counts < x_max) & 
+        (adata.obs.pct_counts_mt > 5) & 
+        (adata.obs.pct_counts_mt < 20)]
+    
     if quietly == False:
         print("After cell filtering:")
         sc.pl.violin(
@@ -110,8 +113,3 @@ def Batch_correct(adata, method='harmony', ):
         sc.pp.neighbors(adata, use_rep='X_pca', n_neighbors=10, n_pcs=50)
 
     return adata
-<<<<<<< HEAD
-    
-=======
-    
->>>>>>> a0c6f58d40bac9e43d0d3f1d7716f12a40bc893c

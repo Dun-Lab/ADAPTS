@@ -6,4 +6,3 @@ The pipeline would integrate many widely used packages to conduct the integrativ
 
 ![Pipeline](./Pipeline.png)
 
-# Package usage
