@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown Menu</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Google Fonts CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <style>
+        @font-face {
+            font-family: "Sebino Regular";
+            src: url("https://db.onlinewebfonts.com/t/4e2a44223ab20891f50f16b7f54b595f.eot");
+            src: url("https://db.onlinewebfonts.com/t/4e2a44223ab20891f50f16b7f54b595f.eot?#iefix")format("embedded-opentype"),
+            url("https://db.onlinewebfonts.com/t/4e2a44223ab20891f50f16b7f54b595f.woff2")format("woff2"),
+            url("https://db.onlinewebfonts.com/t/4e2a44223ab20891f50f16b7f54b595f.woff")format("woff"),
+            url("https://db.onlinewebfonts.com/t/4e2a44223ab20891f50f16b7f54b595f.ttf")format("truetype"),
+            url("https://db.onlinewebfonts.com/t/4e2a44223ab20891f50f16b7f54b595f.svg#Sebino Regular")format("svg");
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .fading-hr-black-sub-header {
+            margin: 30px 0;
+            height: 2px;
+            border: none;
+            background: -webkit-gradient(linear, 0 0, 100% 0, from(transparent), to(transparent), color-stop(50%, black));
+        }
+
+        .vision {
+            flex: 1;
+            padding: 20px;
+            font-family: 'Sebino Regular', sans-serif;
+        }
+
+        .about {
+            flex: 1;
+            padding: 20px;
+            font-family: 'Sebino Regular', sans-serif;
+        }
+
+        .navbar {
+            background-color: #164F66 !important;
+        }
+
+        .jumbotron {
+            background: linear-gradient(to right, #164F66, #0e809e);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 15px;
+        }
+
+        .jumbotron .btn {
+            background-color: white;
+            color: #164F66;
+            border: none;
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-weight: bold;
+        }
+
+        .jumbotron .btn:hover {
+            background-color: #164F66;
+            color: white;
+        }
+
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+            text-align: center;
+            width: 100%;
+        }
+
+        .footer a {
+            color: #343a40;
+            margin: 0 10px;
+        }
+
+        .footer a:hover {
+            color: #007bff;
+        }
+
+        .institutions {
+            padding: 20px;
+            background-color: white;
+            text-align: center;
+            font-family: 'Courier New', sans-serif; /* Change font family as needed */
+        }
+
+        .institutions h2 {
+            margin-bottom: 5px;
+            font-size: 24px; /* Adjust the font size as needed */
+            font-family: 'Courier New', Courier, monospace; /* Change font family as needed */
+
+        }
+
+        .institutions img {
+            margin: 0 auto;
+            display: block;
+            width: 70%; /* Adjust the width as needed */
+        }
+
+        .tools {
+            padding: 50px 0;
+            background-color: #fff;
+            font-family: 'Sebino Regular', sans-serif;
+            flex: 1;
+            padding: 20px;
+
+        }
+
+        .tools-box {
+            padding: 30px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            text-align: center;
+            margin: 10px;
+            background-color: #f8f9fa;
+        }
+
+        .quote-container {
+            max-width: 600px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .quote {
+            font-size: 24px;
+            font-family: 'Sebino Regular', sans-serif;
+            color: #164F66; /* Blue color */
+            position: relative;
+            padding-top: 40px; /* Adjust this value to change the distance between the quote and the sentence */
+        }
+
+        .quote:before {
+            content: "\201C"; /* Unicode for left double quotation mark */
+            font-size: 8em;
+            position: absolute;
+            top: -70px; /* Adjust this value to change the distance between the quote and the sentence */
+            left: 250px; /* Adjust this value to change the position more on the left */
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">DMG-ADAPTS</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">About us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="add_pages/members.html">Members</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#tools">Tools</a>
+                </li>
+                 <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Pipelines
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="scripts/Preprocessing_scanpy.html">Preprocessing of scRNA-seq data</a>
+                        <a class="dropdown-item" href="scripts/Clustering_py.html">Clustering of scRNA-seq data</a>
+                        <a class="dropdown-item" href="scripts/CellAnnotation_CellMarker.html">Annotation of scRNA-seq data</a>
+                        <a class="dropdown-item" href="scripts/DifferentialGeneAnalysis_py.html">Differential gene expression analysis</a>
+                        <a class="dropdown-item" href="scripts/Geneset_enrichment_py.html">Gene set enrichment analysis</a>
+                        <a class="dropdown-item" href="scripts/Pathway_activity_PROGENy_r.html">Pathway activation analysis</a>
+                        <a class="dropdown-item" href="scripts/Pseudotemporal_ordering_py.html">Pseudotemporal ordering</a>
+                        <a class="dropdown-item" href="scripts/Cell_cell_communication_cellphoneDB.html">Cell-cell communication</a>
+                    </div>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="add_pages/contact_us.html">Contact us</a>
+            </li>
+        </ul>
+        </div>
+    </nav>
+
+    <!-- Jumbotron -->
+    <div class="container mt-5">
+        <div class="jumbotron text-center">
+            <h1 class="display-4">Welcome to DMG-ADAPTS</h1>
+            <p class="lead">Our platform provides dedicated pipelines to analyse time-series multiomics data and <br> online tools to explore tumour adaptations to therapeutics in space & time.</p>
+            <hr class="my-4">
+            <p>Ready to dive into our tools and datasets?</p>
+            <a class="btn btn-lg" href="#tools" role="button">Explore Now</a>
+        </div>
+    </div>
+
+    <!-- About us Section -->
+    <div id="about" class="about">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 class="pb-4">About us</h1>
+                <p>The DMG-ADAPTS (ADvanced mAchine-learning Precision Treatment Strategy) platform presents a unique temporal multi-omics  characterisation of on-treatment diffuse midline glioma (DMG) patients and experimental models. This includes single-cell RNA    sequencing, single-cell T Cell Repertoire (TCR) sequencing, spatial transcriptomics (Xenium), histological slide images, CUT&RUN assays, proteins, cytokines and chemokines profiling.</p>
+                <p>Our objective is to model the temporal adaptation of tumours to therapeutics by gathering multi-omics data from patients and experimental models undergoing treatment across various time points.</p>
+                <br><br>
+                <h1 class="pb-4">Why it matters</h1>
+                <p>Diffuse midline glioma (DMG), including diffuse intrinsic pontine glioma (DIPG), represents a uniformly fatal group of brain tumours predominantly affecting children, adolescents, and young adults with palliative radiation therapy standing as the solitary   treatment option. Over the past decade, therapeutic vulnerabilities in DMG have been targeted using precision strategies but anti-DMG responses have been only temporary. The rapid resistance to treatments in DMGs is driven by molecular and cellular plasticity and mechanisms of immune escape that need to be understood and predicted to enable long-term treatment benefits for patients.</p>
+            </div>
+            <div class="col-md-6">
+                <img src="images/about_us.png" class="img-fluid" alt="Our Image">
+            </div>
+        </div>
+    </div>
+
+<br><br>
+
+
+    <!-- Big Quote Section -->
+    <div class="quote text-center">
+        <div class="container">
+            <blockquote>
+                <div>
+                    <p style="font-size: 20px; margin-left: 40px;">Provide a proactive approach to patient care by monitoring tumour adaptation through     non-invasive profiling.</p>
+                </div>
+            </blockquote>
+        </div>
+    </div>
+    
+    <br><br>
+    
+    <!-- Our Vision Section -->
+    <div class="vision" style="background-color: #f8f9fa;">
+    <div class="row">
+        <div class="col-md-6 order-md-1">
+            <img src="images/workflow.png" class="img-fluid" alt="Our Image">
+        </div>
+        <div class="col-md-6 order-md-2">
+            <h1 class="pb-4">Our Vision</h1>
+            <p>The DMG-ADAPTS platform is designed to model the dynamic of tumour adaptation to promising therapeutics and predict the best sequential temporal treatment schema based on time-series multiomics profiling data. All collected data serve as the foundation for training DMG-ADAPTS machine learning models, featured to:</p>
+            <ul>
+                <li>Recommend the most pertinent treatment strategy for a patient, based on their molecular profile, to target the identified signalling dependency;</li>
+                <li>Adjust therapeutic protocols in real-time, guided by tumour adaptation’s biomarkers (<i>e.g.</i> clonotypes, signalling pathways) through non-invasive liquid biopsies.</li>
+            </ul>
+            <p>These biomarkers will act as surrogates for tumour changes and be monitored all along patient’s journey to indicate the optimal timeframe for repositioning the next therapy.</p>
+        </div>
+    </div>
+    </div>
+
+
+    <!-- Discontinuous Line -->
+        <br><br>
+        <div align="center">
+          <hr class="fading-hr-black-sub-header"/>
+        </div>
+        <br>
+
+    <!-- Tools Section -->
+    <div id ="tools" class="tools">
+    <div class="container">
+        <h1 class="pb-4 text-center" style="color: #164F66; font-family: 'Sebino Regular', sans-serif; flex: 1;">Explore our Tools</h1>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="tools-box">
+                    <i class="fas fa-desktop fa-3x"></i><i class="fas fa-search fa-3x"></i>
+                    <h3>Visualisation</h3>
+                    <p>Spatiotemporal exploration of gene expression levels across cell populations and conditions.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="tools-box">
+                    <i class="fas fa-chart-pie fa-3x"></i>
+                    <h3>DE-Analysis</h3>
+                    <p>Interactive and customisable analysis of differential expression between conditions.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="tools-box">
+                    <i class="fas fa-chart-line fa-3x"></i>
+                    <h3>Trajectory inference</h3>
+                    <p>Advanced tools for deciphering Gene Regulatory Networks and spatiotemporal trajectories.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="tools-box">
+                    <i class="fas fa-chart-bar fa-3x"></i>
+                    <h3>Copy Number Variation</h3>
+                    <p>Study intratumoural heterogeneity by infering Copy Number Variations (CNVs).</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="tools-box">
+                    <i class="fas fa-network-wired fa-3x"></i>
+                    <h3>Cell-Cell communication</h3>
+                    <p>Comprehensive analysis of cellular interactions between clusters with CellPhoneDB.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="tools-box">
+                    <i class="fas fa-chart-area fa-3x"></i>
+                    <h3>Pathway<br>activation</h3>
+                    <p>Detect dysregulated pathways through the combined use of GSEA and PROGENY.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+        <!-- Discontinuous Line -->
+        <br><br>
+        <div align="center">
+          <hr class="fading-hr-black-sub-header"/>
+        </div>
+        <br><br>
+
+    <!-- Contributing Institutions Section -->
+    <div class="institutions">
+        <h2>Contributing Institutions</h2>
+        <img src="images/partners.png" class="img-fluid" alt="Our Image">
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>Developed by Yuanhao Jiang & Clara Savary</p>
+            <p>Cancer Signalling Research Group, Dun Lab, University of Newcastle, Australia</p>
+            <a href="https://github.com/Dun-Lab/ADAPTS" class="external-link" style="color: #72CD9A;"><i class="fab fa-github"></i> Visit our GitHub
+            </a>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            
+</body>
+</html>
